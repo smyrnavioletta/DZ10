@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 02</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Задача:
+        Перепишите код так, чтобы counter1 и counter2 работали с собственным значением счетчика.
+        Воспользуйтесь для этого замыканием.
+        */
+        function makeCounter() {
+            let counter = 0; // Каждый вызов makeCounter() будет иметь свое собственное значение счетчика
+            return function() {
+                return counter++;
+            }
+        }
+
+        let counter1 = makeCounter();
+        let counter2 = makeCounter();
+
+        console.log("counter1");
+
+        console.log(counter1());
+        console.log(counter1());
+        console.log(counter1());
+        console.log(counter1());
+
+        console.log("counter2");
+
+        console.log(counter2());
+        console.log(counter2());
+        console.log(counter2());
+        console.log(counter2());
+    </script>
+</body>
+
+</html>

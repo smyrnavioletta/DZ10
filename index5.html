@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 05</title>
+</head>
+
+<body>
+    <script>
+        /*
+        Завдання:
+        Перепишіть клас Numbers, використовуючи шаблон "Модуль".
+        Поля values і threshold мають бути закриті в модулі та зберігатися у замиканні.
+        getGreaterThanThreshold та getLessThanThreshold мають бути відкритими частинами модуля.
+
+        На практиці використання класів переважне, за винятком ситуацій,
+        коли процес розробки та цільове середовище виконання не дають можливості використовувати
+        ключове слово class.
+        */
+
+        const Numbers = (() => {
+            // Приватні поля і методи
+            let values;
+            let threshold;
+
+            const getGreaterThanThreshold = () => values.filter(v => v > threshold);
+            const getLessThanThreshold = () => values.filter(v => v < threshold);
+
+            return class {
+                constructor(thresholdParam, valuesParam) {
+                    threshold = thresholdParam;
+                    values = valuesParam;
+                }
+
+                // Публічні методи
+                static getGreaterThanThreshold() {
+                    return getGreaterThanThreshold();
+                }
+
+                static getLessThanThreshold() {
+                    return getLessThanThreshold();
+                }
+            };
+        })();
+
+        // Створюємо новий об'єкт класу Numbers
+        let numbers = new Numbers(50, [10, 20, 23, 11, 5, 6, 90, 33, 45, 67]);
+
+        // Викликаємо публічні методи для отримання результатів
+        let gt = Numbers.getGreaterThanThreshold();
+        let lt = Numbers.getLessThanThreshold();
+
+        console.log(gt);
+        console.log(lt);
+    </script>
+</body>
+
+</html>
